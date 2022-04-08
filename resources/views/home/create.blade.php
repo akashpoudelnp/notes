@@ -3,7 +3,7 @@
 
 
 <div class="flex justify-center">
-    <h3  class=" text-3xl text-cyan-600 font-bold"> Create Note</h3>
+    <h3  class=" text-3xl text-teal-600 font-bold"> Create Note</h3>
 
 </div>
 
@@ -16,7 +16,7 @@
         <small class="py-1 text-red-700">@error('name') {{$message}} @enderror</small>
         <textarea placeholder="Feel free to let the words flow" name="description" class="my-1  border-teal-600 rounded-md" id="" cols="30" rows="10"></textarea>
         <small class="py-1 text-red-700">@error('description') {{$message}} @enderror</small>
-        <button class="p-1 rounded-md bg-cyan-700 hover:bg-cyan-500 text-white">Save</button>
+        <button class="p-1 rounded-md bg-teal-700 hover:bg-teal-500 text-white">Save</button>
     </form>
 
 </div>
