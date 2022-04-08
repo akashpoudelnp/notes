@@ -15,7 +15,7 @@
               @yield('content')
     </div>
     <div class="my-2 text-center text-gray-500">
-        <i id="quote" class="text-xs italic">⭕</i>
+        <i id="quote" class="text-xs italic">💫</i>
     </div>
     <div class="mx-auto text-center">
      <form method="POST" action="{{route('logout')}}">
