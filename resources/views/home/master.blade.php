@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body class="bg-gray-50">
-    <div id="topBar" class="flex justify-center align-middle w-full  h-auto bg-cyan-600 text-white p-2">
+    <div id="topBar" class="flex justify-center align-middle w-full  h-auto bg-teal-600 text-white p-2">
         <h1 class="text-2xl">📝</h1>
     </div>
     <div class="p-2  my-4">
@@ -21,7 +21,7 @@
      <form method="POST" action="{{route('logout')}}">
          @csrf
 
-        <button class=" bg-cyan-600 text-white p-2 rounded-full hover:bg-cyan-700 ">🔑</button>
+        <button class=" bg-teal-600 text-white p-2 rounded-full hover:bg-teal-700 ">🔑</button>
      </form>
     </div>
 
