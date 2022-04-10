@@ -1,5 +1,6 @@
 <?php
 
+use Faker\Core\Number;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 
@@ -17,3 +18,12 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+Artisan::command('oddoreven',function ()
+{
+   $number =(int) $this->ask("What is the number?");
+    if ($number%2==0) {
+        $this->comment("{$number} is Even");
+    }else{
+        $this->comment("{$number} is Odd");
+    }
+})->purpose('Finds the Odd or Even of the Given Number');

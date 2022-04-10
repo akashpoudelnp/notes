@@ -181,6 +181,10 @@ return [
 
         App\Providers\FortifyServiceProvider::class,
 
+        //Spatie ROles and Permission
+        Spatie\Permission\PermissionServiceProvider::class,
+
+
     ],
 
     /*

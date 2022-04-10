@@ -20,6 +20,7 @@ class HomeController extends Controller
 
         return view('home.create');
     }
+
     public function storenote(Request $request)
     {
 
@@ -66,6 +67,6 @@ class HomeController extends Controller
 
         $note->delete();
 
-        return redirect()->route('home')->with('success','Note Deleted Suceessfully');
+        return redirect()->route('home')->with('deleted','Note Deleted Suceessfully');
     }
 }

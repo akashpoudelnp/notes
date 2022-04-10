@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use function PHPUnit\Framework\isEmpty;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -44,5 +46,12 @@ class User extends Authenticatable
     public function notes()
     {
         return $this->hasMany(Note::class);
+    }
+    public function hasPosted()
+    {
+       if($this->notes->isEmpty()){
+        return false;
+       }
+       return true;
     }
 }
