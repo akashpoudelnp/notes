@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -112,5 +113,26 @@ class UserController extends Controller
         $user->id == auth()->user()->id? abort(403,"Not Authorized to Perform the task"): $user->delete();
 
         return redirect()->route('admin.users.index')->with('success','Deleted User Sucessfully!!');
+    }
+    public function assignrole(User $user)
+    {
+
+        $roles= Role::all();
+
+        $user_roles= $user->roles()->pluck('id')->toArray();
+
+        return view('admin.users.assignrole',compact('user','roles','user_roles'));
+    }
+    public function setRole(Request $request, User $user)
+    {
+        $request->validate([
+            'roles.*' =>['integer','exists:roles,id'],
+        ]);
+
+
+
+         $user->syncRoles($request->roles);
+
+         return redirect()->route('admin.users.index')->with('success','Roles Updated Sucessfully!!');
     }
 }

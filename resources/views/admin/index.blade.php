@@ -1,8 +1,6 @@
 @extends('admin.master')
 @section('header')
-Dashboard
+    Dashboard
 @endsection
 @section('content')
-
-
 @endsection

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+
 
 class RolesController extends Controller
 {
@@ -92,7 +94,7 @@ class RolesController extends Controller
 
         $role->update($request->only(['name']));
 
-        $role->syncPermissions($request->permissions);
+
 
         return redirect()->route('admin.roles.index')
             ->with('success', 'Role updated successfully!');
@@ -109,5 +111,21 @@ class RolesController extends Controller
         $role->delete();
 
         return redirect()->route('admin.roles.index')->with('success','Role Deleted Sucessfully');
+    }
+    public function addperm(Role $role)
+    {
+        $permissions = Permission::all();
+        $role_perms = $role->permissions()->get()->pluck('id')->toArray();
+        return view('admin.roles.addperm',compact('role','permissions','role_perms'));
+    }
+    public function storeperm(Request $request, Role $role)
+    {
+        $request->validate([
+            'permissions.*' => ['required', 'integer', 'exists:permissions,id'],
+        ]);
+
+        $role->syncPermissions($request->permissions);
+
+        return redirect()->route('admin.roles.index')->with('success','Permissions added to role sucessfully');
     }
 }

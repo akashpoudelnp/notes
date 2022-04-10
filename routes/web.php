@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AdminHomeController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\RolesController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,19 +19,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
         // Frontend User Routes
-        Route::get('/', [HomeController::class,'index'])->middleware('auth')->name('home');
-        Route::get('/create', [HomeController::class,'create'])->middleware('auth');
-        Route::get('/edit/{note}', [HomeController::class,'edit'])->middleware('auth')->name('edit');
-        Route::post('/update/{note}', [HomeController::class,'update'])->middleware('auth')->name('update');
-        Route::get('/delete/{note}', [HomeController::class,'delete'])->middleware('auth')->name('delete');
-        Route::post('/storenote', [HomeController::class,'storenote'])->middleware('auth')->name('storenote');
+        Route::get('/', [HomeController::class,'index'])->name('home');
+        //Frontend Blog
+        Route::resource('blogs',BlogController::class)->middleware('auth');
 
         //Admin Routes
-        Route::middleware('auth','isactive')->prefix('/admin')->name('admin.')->group(function () {
+        Route::middleware('auth','permission:can_dashboard')->prefix('/admin')->name('admin.')->group(function () {
                 Route::get('/',[AdminHomeController::class,'index'])->name('index');
-                Route::resource('users',UserController::class);
-                Route::resource('roles',RolesController::class);
-                Route::resource('permissions',PermissionController::class);
-                Route::get('roles/{role}/permission',[RolesController::class,'addperm'])->name('addperm');
-                Route::post('storeperm',[RolesController::class,'storeperm'])->name('storeperm');
+                Route::resource('users',UserController::class)->middleware('permission:can_crud_users');
+                Route::resource('roles',RolesController::class)->middleware('permission:can_crud_roles');
+                Route::resource('permissions',PermissionController::class)->middleware('permission:can_crud_permissions');
+                Route::get('roles/{role}/permission',[RolesController::class,'addperm'])->middleware('permission:can_assign_roleperm')->name('addperm');
+                Route::get('user/{user}/role',[UserController::class,'assignrole'])->middleware('permission:can_assign_roleperm')->name('assignrole');
+                Route::post('setrole/{user}',[UserController::class,'setrole'])->middleware('permission:can_assign_roleperm')->name('setrole');
+                Route::post('storeperm/{role}',[RolesController::class,'storeperm'])->middleware('permission:can_assign_roleperm')->name('storeperm');
         });

@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
+
     public function index()
     {
         $permissions = Permission::all();
@@ -48,5 +49,11 @@ class PermissionController extends Controller
 
         return redirect()->route('admin.permissions.index')
             ->with('success', 'Permission updated successfully!');
+    }
+    public function destroy(Permission $permission)
+    {
+        // $permission->roles()
+        $permission->delete();
+        return redirect()->route('admin.permissions.index')->with('success','Permission Deleted Successfully!!');
     }
 }
