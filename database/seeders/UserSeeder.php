@@ -18,8 +18,16 @@ class UserSeeder extends Seeder
     public function run()
     {
       $role =  Role::create(['name'=>'super_admin']);
-       $permission = Permission::create(['name'=>'can_dashboard']);
-       $permission->assignRole($role);
+      $permission1 = Permission::create(['name'=>'can_dashboard']);   
+      $permission2 = Permission::create(['name'=>'can_assign_roleperm']);
+      $permission3 = Permission::create(['name'=>'can_crud_permissions']);
+      $permission4 = Permission::create(['name'=>'can_crud_roles']);   
+      $permission5 = Permission::create(['name'=>'can_crud_users']);
+            $role->givePermissionTo($permission1);
+            $role->givePermissionTo($permission2);
+            $role->givePermissionTo($permission3);
+            $role->givePermissionTo($permission4);
+            $role->givePermissionTo($permission5);
        $user= User::create(
            [
                "name"=>'Admin',
