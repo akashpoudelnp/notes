@@ -1,5 +1,5 @@
 @extends('auth.master')
-@section('title', 'Login')
+@section('title', 'LOGIn')
 @section('content')
     <form action="{{ route('login') }}" method="post" style="border-top-width: 26px;"
         class="border-1 flex flex-col rounded-md border-teal-600 bg-white p-12 shadow-md">
