@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Setting locale
+
 Route::get('locale/{locale}', function ($locale) {
         $validLocale = in_array($locale, ['en', 'np']);
         if ($validLocale) {
