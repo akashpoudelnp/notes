@@ -15,8 +15,17 @@
 
 <body class="bg-gray-50">
     <div id="topBar" class="flex h-auto w-full justify-center bg-teal-600 p-2 align-middle text-white">
-        <h1 class="text-2xl">TEST Blogs</h1>
+        <h1 class="text-2xl">{{ __('home.title') }}</h1>
+        <div class="pl-3 text-xs" id="lang">
+            <ul id="lang_menu">
+                <li class="language{{ App::isLocale('np') ? ' bg-yellow-500' : '' }}"><a href="/locale/np">Nepali</a>
+                </li>
+                <li class="language{{ App::isLocale('en') ? ' bg-yellow-500' : '' }}"><a href="/locale/en">English</a>
+                </li>
+            </ul>
+        </div>
     </div>
+
     @include('components.alert')
     <div class="my-4 p-2">
         @yield('content')

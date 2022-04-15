@@ -83,6 +83,10 @@ return [
     */
 
     'locale' => 'en',
+    'available_locales' => [
+        'English' => 'en',
+        'Nepal' => 'np',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -183,7 +187,8 @@ return [
 
         //Spatie ROles and Permission
         Spatie\Permission\PermissionServiceProvider::class,
-
+        //Jwt
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
     ],
 

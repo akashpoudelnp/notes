@@ -1,8 +1,7 @@
 @extends('home.master')
 @section('content')
     <div class="flex justify-center">
-        <h3 class="text-3xl text-teal-600"> <span class="font-extralight">Start</span> <span
-                class="font-bold">Blogging</span></h3>
+        <h3 class="text-3xl text-teal-600">{{ __('home.sub_title') }}</h3>
 
         <a class="ml-1 rounded-full p-1" href="{{ route('blogs.create') }}">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-teal-600" viewBox="0 0 20 20" fill="currentColor">

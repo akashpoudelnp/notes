@@ -15,8 +15,8 @@
 
                         <input
                             @for ($i = 0; $i < count($role_perms); $i++) @if ($permission->id == $role_perms[$i])
-                checked
-              @endif @endfor
+                                            checked
+                                        @endif @endfor
                             type="checkbox" name="permissions[]" value="{{ $permission->id }}" id="">
                     </div>
                 @empty
